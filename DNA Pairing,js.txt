@@ -1,0 +1,29 @@
+function pairElement(str) {
+  
+  str = str.toUpperCase();
+  str = str.split("");
+  
+  var pairs = [];
+  
+  var a = ["A", "T"];
+  var t = ["T", "A"];
+  var c = ["C", "G"];
+  var g = ["G", "C"];
+  
+  
+  for(var i = 0; i < str.length; i++){
+    if(str[i] == "A") {
+      pairs.push(a);
+    } else if(str[i] == "T") {
+      pairs.push(t);
+    } else if(str[i] == "C") {
+      pairs.push(c);}
+    else if(str[i] == "G") {
+      pairs.push(g);}
+  }
+    
+  return pairs;
+}
+
+pairElement("GCG");
+  
