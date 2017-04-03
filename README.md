@@ -1,5 +1,5 @@
 # Fcc_Algorithms
-Free Code Camp Algorithms solutions by
+Free Code Camp Algorithms solutions and Udemy Courses by
 
 # Ierofantis
 
