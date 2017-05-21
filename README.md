@@ -12,3 +12,6 @@ and
 
 # FreecodeCamp
 https://www.freecodecamp.com/ierofantis
+
+#Linkedin - E learning
+https://www.linkedin.com/in/theodore-pantazopoulos-7670ba143/
