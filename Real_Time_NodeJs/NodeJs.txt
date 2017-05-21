@@ -1,0 +1,7 @@
+Note: Real-Time Web with Node.js was created by Frontend Masters. It was originally published on July 12, 2014. We are pleased to host this training in our library. 
+
+Accelerate your development efforts by learning how to work with HTML5 APIs for real-time communications using Node.js. Join JavaScript expert Kyle Simpson in this course as he conducts a comprehensive Node.js workshop. Kyle introduces several APIs including Storage, Canvas, getUserMedia, and requestAnimationFrame, explaining the benefits and uses of each. Then, he demonstrates how developers can implement these solutions, showing how to use the command line to communicate with HTML5 in real-time through asynchronous code. He also covers file input and output, publishing modules, making socket connections, and more.
+Instructor
+
+
+Kyle Simpson
