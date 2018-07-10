@@ -1,0 +1,79 @@
+var denom = [
+  { name: "ONE HUNDRED", val: 100.0 },
+  { name: "TWENTY", val: 20.0 },
+  { name: "TEN", val: 10.0 },
+  { name: "FIVE", val: 5.0 },
+  { name: "ONE", val: 1.0 },
+  { name: "QUARTER", val: 0.25 },
+  { name: "DIME", val: 0.1 },
+  { name: "NICKEL", val: 0.05 },
+  { name: "PENNY", val: 0.01 }
+];
+
+function checkCashRegister(price, cash, cid) {
+  // var changeOwed = difference between cash given and price
+  var changeOwed = cash - price;
+  // loop through your cash register array and sum up the total dollar amount of all the money you have in your drawer
+  // if total is less than changeOwed return insufficient funds
+  // else if total === changeOwed then return Closed
+  // Transform CID array into drawer object
+  var register = cid.reduce(
+    function(acc, curr) {
+      acc.total += curr[1];
+      acc[curr[0]] = curr[1];
+      return acc;
+    },
+    { total: 0 }
+  );
+
+  if (register.total === changeOwed) {
+    return { status: "CLOSED", change: cid };
+  }
+
+  if (register.total < changeOwed) {
+    return { status: "INSUFFICIENT_FUNDS", change: [] };
+  }
+  // else calculate change owed by doing the following
+  // find the biggest possible change that you have available that is below the changeOwed
+  // subtract this amount from changeOwed
+  // add this amount to your array of payments
+  // subtract this amount from your cash drawer (so if $1 is the highest amount then take $1 out of cash drawer
+  // repeat until you have gone through the smallest coin you have available in your cash drawer
+  // if after going through all coins you find that your changeOwed is > $0.00 then return insuffient funds
+  // else if changeOwed is $0.00 then return your array of coins you will give as change
+  // Loop through the denomination array
+  var change_arr = denom.reduce(function(acc, curr) {
+    var value = 0;
+
+    while (register[curr.name] > 0 && changeOwed >= curr.val) {
+      changeOwed -= curr.val;
+      register[curr.name] -= curr.val;
+      value += curr.val;
+
+      changeOwed = Math.round(changeOwed * 100) / 100;
+    }
+
+    if (value > 0) {
+      acc.push([curr.name, value]);
+    }
+    return acc;
+  }, []);
+
+  if (change_arr.length < 1 || changeOwed > 0) {
+    return { status: "INSUFFICIENT_FUNDS", change: [] };
+  }
+
+  return { status: "OPEN", change: change_arr };
+}
+
+checkCashRegister(19.5, 20, [
+  ["PENNY", 1.01],
+  ["NICKEL", 2.05],
+  ["DIME", 3.1],
+  ["QUARTER", 4.25],
+  ["ONE", 90],
+  ["FIVE", 55],
+  ["TEN", 20],
+  ["TWENTY", 60],
+  ["ONE HUNDRED", 100]
+]);
